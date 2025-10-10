@@ -1,4 +1,4 @@
-# St Sedge Product
+# St Dormitory House
 
 ## Requirements
 - PHP = 8.3
