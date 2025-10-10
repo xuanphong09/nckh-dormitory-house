@@ -2,6 +2,7 @@
 
 ## Requirements
 - PHP = 8.3
+- NodeJs >= 20.19.0
 
 ## Usage
 - In root path project, run command:
