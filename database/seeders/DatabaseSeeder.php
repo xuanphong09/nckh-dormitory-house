@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +12,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Create a test user
         User::factory()->create([
-            'name' => 'Test User',
+            'username' => 'Test User', // Updated to match the correct column name
             'email' => 'test@example.com',
         ]);
+
+        // Call other seeders if they exist
+        $this->callIfExists([
+            UsersTableSeeder::class,
+            DormitoryManagersTableSeeder::class,
+            RoomDetailsSeeder::class, // child table
+            DormitoryRoomsSeeder::class, // parent table
+            DormRoomsSeeder::class,
+            RentalRoomsSeeder::class,
+        ]);
+    }
+
+    protected function callIfExists(array $seeders): void
+    {
+        foreach ($seeders as $seeder) {
+            if (class_exists($seeder)) {
+                $this->call($seeder);
+            }
+        }
     }
 }
